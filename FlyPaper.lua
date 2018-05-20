@@ -22,7 +22,7 @@
 
 --[[ library stuff ]]--
 
-local VERSION = 2
+local VERSION = 3
 if FlyPaper and tonumber(FlyPaper.version) and tonumber(FlyPaper.version) >= VERSION then 
 	return 
 end
@@ -54,10 +54,6 @@ end
 --returns true if its actually possible to attach the two frames without error
 local function CanAttach(frame, otherFrame)
 	if not(frame and otherFrame) then
-		return
-	elseif frame:GetNumPoints() == 0 or otherFrame:GetNumPoints() == 0 then
-		return
-	elseif frame:GetWidth() == 0 or frame:GetHeight() == 0 or otherFrame:GetWidth() == 0 or otherFrame:GetHeight() == 0 then
 		return
 	elseif FrameIsDependentOnFrame(otherFrame, frame) then
 		return
