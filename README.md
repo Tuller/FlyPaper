@@ -13,7 +13,7 @@ local LibFlyPaper = LibStub("LibFlyPaper-1.0")
 -- returns an anchor point if attached and nil otherwise
 local anchorPoint = LibFlyPaper.Stick(frame, otherFrame, tolerance, xOff, yOff)
 
--- attempts to anchor frame to a specific anchor point on otherFrame
+-- Attempts to anchor frame to a specific anchor point on otherFrame
 -- point: any non nil return value of LibFlyPaper.Stick
 -- xOff: horizontal spacing to include between each frame
 -- yOff: vertical spacing to include between each frame
