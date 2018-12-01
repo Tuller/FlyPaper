@@ -1,25 +1,11 @@
---[[
-	LibFlyPaper
-		Functionality for sticking one frome to another frame
-
-	API:
-		LibFlyPaper.Stick(frame, otherFrame, tolerance, xOff, yOff)
-			Attempts to attach <frame> to <otherFrame>
-				tolerance - how close the frames need to be to attach
-				xOff - how close horizontally, the frames should be attached
-				yOff - how close vertically, the frames should be attached
-
-		LibFlyPaper.StickToPoint(frame, otherFrame, point, xOff, yOff)
-			attempts to anchor <frame> to a specific point on <otherFrame>
-				point - any non nil return value of FlyPaper.Stick
---]]
-
+-- LibFlyPaper
+-- Functionality for sticking one frome to another frame
 
 local LibFlyPaper = _G.LibStub:NewLibrary('LibFlyPaper-1.0', 0)
 if not LibFlyPaper then return end
 
 -- returns true if <frame> or one of the frames that <frame> is dependent on
--- is anchored to <otherFrame>.  Returns nil otherwise.
+-- is anchored to <otherFrame> and nil otherwise
 local function FrameIsDependentOnFrame(frame, otherFrame)
 	if (frame and otherFrame) then
 		if frame == otherFrame then
@@ -46,7 +32,7 @@ local function CanAttach(frame, otherFrame)
 	return true
 end
 
--- Attachment Functions
+-- Attachment helpers
 local function AttachToTop(frame, otherFrame, distLeft, distRight, distCenter, offset)
 	frame:ClearAllPoints()
 
@@ -120,6 +106,12 @@ local function AttachToRight(frame, otherFrame, distTop, distBottom, distCenter,
 end
 
 -- Public API
+
+-- attempts to attach <frame> to <otherFrame>
+-- tolerance: how close the frames need to be to attach
+-- xOff: horizontal spacing to include between each frame
+-- yOff: vertical spacing to include between each frame
+-- returns an anchor point if attached and nil otherwise
 function LibFlyPaper.Stick(frame, otherFrame, tolerance, xOff, yOff)
 	xOff = xOff or 0
 	yOff = yOff or 0
@@ -202,6 +194,11 @@ function LibFlyPaper.Stick(frame, otherFrame, tolerance, xOff, yOff)
 	end
 end
 
+-- attempts to anchor frame to a specific anchor point on otherFrame
+-- point: any non nil return value of LibFlyPaper.Stick
+-- xOff: horizontal spacing to include between each frame
+-- yOff: vertical spacing to include between each frame
+-- returns an anchor point if attached and nil otherwise
 function LibFlyPaper.StickToPoint(frame, otherFrame, point, xOff, yOff)
 	xOff = xOff or 0
 	yOff = yOff or 0
